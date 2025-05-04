@@ -14,3 +14,21 @@ module.exports = defineConfig({
     }
   }
 })
+module.exports = defineConfig({
+  projectConfig: {
+    // ...
+    workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
+  },
+})
+module.exports = defineConfig({
+  // ...
+  admin: {
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
+  },
+})
+module.exports = defineConfig({
+  projectConfig: {
+    // ...
+    redisUrl: process.env.REDIS_URL,
+  },
+})
