@@ -19,4 +19,40 @@ export default defineConfig({
     backendUrl: process.env.MEDUSA_BACKEND_URL,
     disable: process.env.DISABLE_MEDUSA_ADMIN === 'true',
   },
+
+  modules: [
+    {
+      resolve: "@medusajs/medusa/cache-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    {
+      resolve: "@medusajs/medusa/event-bus-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    {
+      resolve: "@medusajs/medusa/workflow-engine-redis",
+      options: {
+        redis: {
+          url: process.env.REDIS_URL,
+        },
+      },
+    },
+    // Optional: Add file and notification modules if needed
+    // {
+    //   resolve: "@medusajs/file-s3",
+    //   options: {
+    //     config: {
+    //       endpoint: process.env.S3_ENDPOINT,
+    //       bucket: process.env.S3_BUCKET,
+    //       region: process.env.S3_REGION,
+    //       access_key_id: process.env.S3_ACCESS_KEY_ID,
+    //       secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
+    //     },
+    //   },
+    // },
+  ],
 })
